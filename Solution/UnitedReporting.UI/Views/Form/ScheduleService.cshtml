@@ -1,0 +1,156 @@
+﻿@model UnitedReporting.Model.Contact
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<article>
+    <h1>Schedule Service</h1>
+    <p>Please fill out the form below to schedule services.</p>
+    
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.RequestedServices)
+        
+        <fieldset>
+            <legend>Client</legend>
+            <div class="clear-fix" style="margin-bottom: 14px;">
+                <div style="float:left; margin-right:20px;">
+                    <label>
+                        Your Name
+                        @Html.ValidationMessageFor(model => model.FirstName, "*")
+                        @Html.ValidationMessageFor(model => model.LastName, "*")
+                    </label>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.FirstName)
+                    </div>
+                    <small>@Html.DisplayNameFor(model => model.FirstName)</small>
+                </div>
+
+                <div style="float:left;">
+                    <label>&nbsp;</label>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.LastName)
+                    </div>
+                    <small>@Html.DisplayNameFor(model => model.LastName)</small>
+                </div>
+            </div>
+
+            <div class="clear-fix" style="margin-bottom: 14px;">
+                <div style="float:left; margin-right:20px;">
+                    <label>
+                        Attorney's Name
+                        @Html.ValidationMessageFor(model => model.AttorneyFirstName, "*")
+                        @Html.ValidationMessageFor(model => model.AttorneyLastName, "*")
+                    </label>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.AttorneyFirstName)
+                    </div>
+                    <small>@Html.DisplayNameFor(model => model.AttorneyFirstName)</small>
+                </div>
+
+                <div style="float:left;">
+                    <label>&nbsp;</label>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.AttorneyLastName)
+                    </div>
+                    <small>@Html.DisplayNameFor(model => model.AttorneyLastName)</small>
+                </div>
+            </div>
+        
+            <div class="clear-fix" style="margin-bottom: 14px;">
+                <label>@Html.DisplayNameFor(model => model.FirmName) @Html.ValidationMessageFor(model => model.FirmName, "*")</label>
+                @Html.EditorFor(model => model.FirmName)
+            </div>
+
+            <div class="clear-fix" style="margin-bottom: 14px;">
+                <div style="float:left; margin-right:20px;">
+                    @Html.LabelFor(model => model.Phone) @Html.ValidationMessageFor(model => model.Phone, "*")
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Phone)
+                    </div>
+                </div>
+                <div style="float:left;">
+                    @Html.LabelFor(model => model.Email) @Html.ValidationMessageFor(model => model.Email, "*")
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Email)
+
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Deposition</legend>
+            
+            <div class="clear-fix" style="margin-bottom: 14px;">
+                <div style="float:left; margin-right:20px;">
+                    <div class="editor-label">
+                        <label>Case Number</label>
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.CaseNumber)
+                    </div>
+                </div>
+
+                <div style="float:left;">
+                    <div class="editor-label">
+                        <label>Case Name</label>
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.CaseName)
+                    </div>
+                </div>
+            </div>
+
+            <div class="clear-fix" style="margin-bottom: 14px;">
+                <div class="editor-label">
+                    <label>Proceeding Date</label>
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.PreceedingDate)
+                </div>
+            </div>
+            
+            <div class="clear-fix" style="margin-bottom: 14px;">
+                <div class="editor-label">
+                    <label>Requested Service</label>
+                </div>
+                <div class="editor-field">
+                    <input type="checkbox" name="RequestedServices" id="CourtReport" value="Court Report" /> <label for="CourtReport" style="display: inline-block">Court Report</label><br/>
+                    <input type="checkbox" name="RequestedServices" id="Transcription" value="Transcription" /> <label for="Transcription" style="display: inline-block">Transcription</label><br />
+                    <input type="checkbox" name="RequestedServices" id="Interpreter" value="Interpreter" /> <label for="Interpreter" style="display: inline-block">Interpreter</label><br />
+                    <input type="checkbox" name="RequestedServices" value="Videographer" /> <label for="" style="display: inline-block">Videographer</label><br />
+                    <input type="checkbox" name="RequestedServices" value="Mediation" /> <label for="" style="display: inline-block">Mediation</label><br />
+                    <input type="checkbox" name="RequestedServices" value="Videoconferencing" /> <label for="" style="display: inline-block">Videoconferencing</label><br />
+                    <input type="checkbox" name="RequestedServices" value="Trial Presentation" /> <label for="" style="display: inline-block">Trial Presentation</label><br />
+                    <input type="checkbox" name="RequestedServices" value="Equipment Rental" /> <label for="" style="display: inline-block">Equipment Rental</label><br />
+                    <input type="checkbox" name="RequestedServices" value="Court Report" /> <label for="" style="display: inline-block">Court Report</label><br />
+                    <input type="checkbox" name="RequestedServices" value="Other" /> <label for="" style="display: inline-block">Other: </label>
+                    <input type="text" id="Other" />
+                </div>
+            </div>
+        </fieldset>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Message)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Message)
+        </div>
+        <small>You may enter any additional instructions, information, requirements or comments.</small>
+
+        @Html.HiddenFor(model => model.CreatedOn)
+
+        <h2>Important Information</h2>
+        <p>We will contact you the day before the reservation to confirm. If you do not hear from us, please call.</p>
+        <small>Disclaimer text will go here.</small>
+        <p>
+            <input type="submit" value="Submit" />
+        </p>
+    }
+</article>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

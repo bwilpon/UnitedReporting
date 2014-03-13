@@ -1,0 +1,17 @@
+﻿@model List<UnitedReporting.Model.ELMAH_Error>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+<table>
+    @foreach (var error in Model)
+    {
+        <tr>
+            <td>@error.TimeUtc.ToLocalTime()</td>
+            <td>@error.Message</td>
+        </tr>
+    }
+</table>

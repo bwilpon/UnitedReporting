@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      
+    <Schema Namespace="UnitedReporting.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="UnitedReportingStoreContainer">
+    <EntitySet Name="Categories" EntityType="UnitedReporting.Store.Categories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PageContents" EntityType="UnitedReporting.Store.PageContents" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Contacts" EntityType="UnitedReporting.Store.Contacts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TranscriptOrders" EntityType="UnitedReporting.Store.TranscriptOrders" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="PageContentCategory" Association="UnitedReporting.Store.PageContentCategory">
+      <End Role="PageContent" EntitySet="PageContents" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ImageUrl" Type="nvarchar" Nullable="true" MaxLength="500" />
+    <Property Name="Sequence" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="PageContents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="SubTitle" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar" Nullable="true" MaxLength="500" />
+    <Property Name="DisplayImage" Type="bit" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="PublishedDate" Type="datetime" Nullable="true" />
+    <Property Name="FriendlyUrl" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contacts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Phone" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="CreatedOn" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="Message" Type="varchar(max)" Nullable="true" />
+    <Property Name="AttorneyFirstName" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="AttorneyLastName" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="FirmName" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="CaseNumber" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="CaseName" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="PreceedingDate" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="RequestedServices" Type="varchar" Nullable="true" MaxLength="255" />
+    <Property Name="NoticeFilePath" Type="varchar" Nullable="true" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="TranscriptOrders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderingAttorney" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="FirmName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Address1" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Address2" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="State" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="CaseStyle" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="DateTaken" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="DeponentsOrJudge" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="DateNeeded" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Excerpt" Type="nvarchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <Association Name="PageContentCategory">
+    <End Role="PageContent" Type="UnitedReporting.Store.PageContents" Multiplicity="*" />
+    <End Role="Category" Type="UnitedReporting.Store.Categories" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PageContent">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UnitedReporting" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="UnitedReportingContainer" annotation:LazyLoadingEnabled="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+          <EntitySet Name="Categories" EntityType="UnitedReporting.Category" />
+          <EntitySet Name="PageContents" EntityType="UnitedReporting.PageContent" />
+          <AssociationSet Name="PageContentCategory" Association="UnitedReporting.PageContentCategory">
+            <End Role="PageContent" EntitySet="PageContents" />
+            <End Role="Category" EntitySet="Categories" />
+          </AssociationSet>
+          <EntitySet Name="Contacts" EntityType="UnitedReporting.Contact" />
+          <EntitySet Name="TranscriptOrders" EntityType="UnitedReporting.TranscriptOrder" />
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="ImageUrl" Nullable="true" MaxLength="500" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="PageContents" Relationship="UnitedReporting.PageContentCategory" FromRole="Category" ToRole="PageContent" />
+          <Property Name="Sequence" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="PageContent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="SubTitle" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Body" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="ImageUrl" Nullable="true" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Type="Boolean" Name="DisplayImage" Nullable="false" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTime" Name="PublishedDate" Nullable="true" Precision="3" />
+          <Property Type="String" Name="FriendlyUrl" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Category" Relationship="UnitedReporting.PageContentCategory" FromRole="PageContent" ToRole="Category" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        </EntityType>
+        <Association Name="PageContentCategory">
+          <End Type="UnitedReporting.PageContent" Role="PageContent" Multiplicity="*" />
+          <End Type="UnitedReporting.Category" Role="Category" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PageContent">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Message" Type="String" Unicode="false" FixedLength="false" MaxLength="Max" />
+          <Property Name="AttorneyFirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AttorneyLastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FirmName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CaseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CaseName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PreceedingDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RequestedServices" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NoticeFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TranscriptOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderingAttorney" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="FirmName" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="Address1" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="Address2" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="CaseStyle" Type="String" Nullable="false" MaxLength="255" />
+          <Property Name="DateTaken" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="DeponentsOrJudge" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="DateNeeded" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="Excerpt" Type="String" Nullable="false" MaxLength="255" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UnitedReportingStoreContainer" CdmEntityContainer="UnitedReportingContainer">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="IsTypeOf(UnitedReporting.Category)">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PageContents">
+      <EntityTypeMapping TypeName="IsTypeOf(UnitedReporting.PageContent)">
+        <MappingFragment StoreEntitySet="PageContents">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="DisplayImage" ColumnName="DisplayImage" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="PublishedDate" ColumnName="PublishedDate" />
+          <ScalarProperty Name="FriendlyUrl" ColumnName="FriendlyUrl" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="IsTypeOf(UnitedReporting.Contact)">
+        <MappingFragment StoreEntitySet="Contacts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="AttorneyFirstName" ColumnName="AttorneyFirstName" />
+          <ScalarProperty Name="AttorneyLastName" ColumnName="AttorneyLastName" />
+          <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+          <ScalarProperty Name="CaseNumber" ColumnName="CaseNumber" />
+          <ScalarProperty Name="CaseName" ColumnName="CaseName" />
+          <ScalarProperty Name="PreceedingDate" ColumnName="PreceedingDate" />
+          <ScalarProperty Name="RequestedServices" ColumnName="RequestedServices" />
+          <ScalarProperty Name="NoticeFilePath" ColumnName="NoticeFilePath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TranscriptOrders">
+      <EntityTypeMapping TypeName="IsTypeOf(UnitedReporting.TranscriptOrder)">
+        <MappingFragment StoreEntitySet="TranscriptOrders">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OrderingAttorney" ColumnName="OrderingAttorney" />
+          <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CaseStyle" ColumnName="CaseStyle" />
+          <ScalarProperty Name="DateTaken" ColumnName="DateTaken" />
+          <ScalarProperty Name="DeponentsOrJudge" ColumnName="DeponentsOrJudge" />
+          <ScalarProperty Name="DateNeeded" ColumnName="DateNeeded" />
+          <ScalarProperty Name="Excerpt" ColumnName="Excerpt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer>
+    <edmx:Connection>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <edmx:DesignerProperty Name="EnablePluralization" Value="True" />
+        <edmx:DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <edmx:DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <edmx:DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

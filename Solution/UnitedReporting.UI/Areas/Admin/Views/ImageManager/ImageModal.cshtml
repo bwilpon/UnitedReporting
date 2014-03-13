@@ -1,0 +1,30 @@
+﻿@model IEnumerable<UnitedReporting.UI.Areas.Admin.Controllers.ImageViewModel>
+
+@{
+    ViewBag.Title = "ImageModal";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminModal.cshtml";
+}
+
+<hr />
+@foreach (var image in Model)
+{
+    <div style="margin:20px;">
+        <div style="display:inline-block; vert-align: top; vertical-align: top; width:100px;">
+            <p><a href="javascript:void(0)" class="image-select" data-url="@image.Url">Select Image</a></p>
+        </div>
+        <div style="display: inline-block; width: 600px;"><img src="@image.Url" alt="" style="width: 50%; height: 50%; box-shadow: 0 5px 8px #333; line-height:0;" /></div>
+        <hr />
+    </div>
+}
+
+@section Scripts {
+    <script>
+        $(".image-select").on("click", function () {
+            var evt = jQuery.Event('imageSelected', {
+                url: $(this).attr("data-url")
+            });
+            
+            parent.$dialog.trigger(evt);
+        });
+    </script>
+}

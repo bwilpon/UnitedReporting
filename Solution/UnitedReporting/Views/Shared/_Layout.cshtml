@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - United Reporting, Inc</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+	    <header>
+		    <div class="content-wrapper">
+			    <div class="float-left">
+				    <div id="logo">
+					    <img src="~/Images/united-reporting-logo.gif" alt="United Reporting" />
+				    </div>
+			    </div>
+			    <div class="float-right">
+				    @Html.Partial("ReporterBaseForms")
+			    </div>
+		    </div>
+	    </header>
+
+		<div id="body">
+	        <section class="content-wrapper page main-content clear-fix">
+		        @Html.Action("Menu", "Navigation")
+		        <div class="page-margin clear-fix">
+			        @RenderBody()
+			        <aside>
+				        @*<h3>Solutions</h3>
+						<p>
+							Use this area to provide additional information.
+						</p>*@
+				        <ul>
+					        <li><a href="#">Schedule Reporter</a></li>
+					        <li><a href="#">Schedule Video</a></li>
+					        <li><a href="#">Order Transcript</a></li>
+					        <li><a href="#">Request a Location</a></li>
+					        <li><a href="#">Pay Online</a></li>
+					        <li><a href="https://www.mobiletranscript.com/transcript/myrepository/index/zur4t6" target="_blank">Online Transcript Repository</a></li>
+				        </ul>
+				        <p>
+					        Call us at (877) 525-2434
+				        </p>
+				        <div style="border-top: solid 1px #dae0e1">
+					        <h3>Membership</h3>
+					        <div style="margin-top: 10px;">
+						        <div style="display: inline-block; vertical-align: top; margin-right: 10px;">
+							        <a href="http://www.ncra.org/" target="_blank"><img src="~/Images/ncra_logo.gif" /></a>
+						        </div>
+						        <div style="display: inline-block; vertical-align: top;">
+							        <a href="http://www.fcraonline.org/" target="_blank"><img src="~/Images/FCRA_Logo.gif" /></a>
+						        </div>
+					        </div>
+				        </div>
+			        </aside>
+		        </div>
+	        </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+	            <div class="float-right">
+		            <p>&copy; 2005 - @DateTime.Now.Year United Reporting, Inc</p>
+	            </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+		<script src="~/Scripts/hoverIntent.js"></script>
+		<script src="~/Scripts/superfish.min.js"></script>
+	    <script>
+	    	(function ($) { //create closure so we can safely use $ as alias for jQuery
+
+	    		$(document).ready(function () {
+
+	    			// initialise plugin
+	    			$('#menu').superfish({
+	    				delay: 0,
+	    				animation: { opacity: 'show', height: 'show' },  // fade-in and slide-down animation
+	    				speed: 'fast',
+	    			});
+	    		});
+
+	    	})(jQuery);
+    	</script>
+    </body>
+</html>

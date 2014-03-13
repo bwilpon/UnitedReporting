@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - United Reporting, Inc</title>
+        <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="~/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+        
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+	    <header>
+		    <div class="content-wrapper">
+			    <div class="float-left">
+				    <div id="logo">
+                        <a href="/"><img src="~/Images/united-reporting-logo-2.gif" alt="United Reporting" /></a>
+				    </div>
+			    </div>
+		        <div class="float-right" style="text-align: right;">
+		            @Html.Partial("ReporterBaseForms")
+		            <div style="display:inline-block; font-size: 18px;">Toll Free: (877) 525-2434 </div>
+                    <div style="display:inline-block; line-height:12px; margin: 8px 0 8px 0;"><a id="after-hours" href="javascript:void(0);">After Hours Contact</a></div>
+		        </div>
+                <div class="clear-fix"></div>
+		    </div>
+	    </header>
+
+		<div id="body">
+	        <section class="content-wrapper page main-content clear-fix">
+		        @Html.Action("Menu", "Navigation")
+		        <div class="page-margin clear-fix">
+			        @RenderBody()
+			        <aside>
+				        @*<h3>Solutions</h3>
+						<p>
+							Use this area to provide additional information.
+						</p>*@
+			            <ul id="aside-menu">
+			                <li>@Html.ActionLink("Schedule Service", "ScheduleService", "Form")</li>
+			                <li>@Html.ActionLink("Order Transcript", "TranscriptOrder", "Form")</li>
+			                <li><a href="https://www.mobiletranscript.com/transcript/myrepository/index/zur4t6" target="_blank">Online Transcript Repository</a></li>
+			                <li><a href="#" style="color: #1B7B1B;">Online Pay</a></li>
+			            </ul>
+				        <p>
+					        Call us at (877) 525-2434
+				        </p>
+				        <div style="border-top: solid 1px #dae0e1">
+					        <h3>Membership</h3>
+				            <div style="margin-top: 10px;">
+				                <div style="float:left; width: 100px; height: 100px; text-align: center; ">
+				                    <a href="http://www.ncra.org/" target="_blank"><img src="~/Images/ncra_logo.gif" /></a>
+				                </div>
+				                <div style="float:right; width: 100px; height: 100px; text-align: center; ">
+				                    <a href="http://www.fcraonline.org/" target="_blank"><img src="~/Images/FCRA_Logo.gif" /></a>
+				                </div>
+                                
+				            </div>
+                            <div class="clear-fix"></div>
+				            <div style="margin-top: 10px;">
+				                <div style="float:left; width: 100px; height: 100px; text-align: center; ">
+				                    <a href="http://www.wbenc.org/" target="_blank"><img src="~/Images/wbenc.gif" style="margin-top: 24px;" /></a>
+				                </div>
+				                <div style="float:right; width: 100px; height: 100px; text-align: center; ">
+				                    <a href="http://www.ncra.org/Membership/content.cfm?ItemNumber=9331&navItemNumber=11514" target="_blank"><img src="~/Images/ethics-first.gif" /></a>
+				                </div>
+				            </div>
+                            <div class="clear-fix"></div>
+                         </div>
+			        </aside>
+		        </div>
+	        </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div style="float:left; width:500px;">
+                    <p>
+                        <a href="https://unitedreporting.reporterbase.com/attorney/" target="_blank">Client Login</a> | 
+                        <a href="https://unitedreporting.reporterbase.com/reporter/" target="_blank">Reporter Login</a>
+                    </p>
+                </div>
+                <div style="float:right; width:200px; text-align: right;">
+                    <p>&copy; 2005 - @DateTime.Now.Year United Reporting, Inc</p>
+                </div>
+            </div>
+        </footer>
+        
+        <div id="dialog" title="Emergency Coverage">
+            <p>Our offices have reporters standing by who are available for last-minute calls from clients who have forgotten to schedule a court reporter, videographer or interpreter, or when another agency fails to show up.<p>
+            <p>Our schedulers have an amazing ability to supply you with court reporting, interpreting and videography services at the last minute.</p>
+            <p>
+               After Hours/Emergency Number:<br/>
+               (877) 525-2434
+            </p>
+        </div>
+
+        <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        @RenderSection("scripts", required: false)
+		<script src="~/Scripts/hoverIntent.js"></script>
+		<script src="~/Scripts/superfish.min.js"></script>
+	    <script>
+	    	(function ($) { //create closure so we can safely use $ as alias for jQuery
+
+	    	    $(document).ready(function() {
+
+	    	        // initialise plugin
+	    	        $('#menu').superfish({
+	    	            delay: 0,
+	    	            animation: { opacity: 'show', height: 'show' }, // fade-in and slide-down animation
+	    	            speed: 'fast',
+	    	        });
+
+	    	        $("#dialog").dialog({
+	    	            autoOpen: false,
+	    	            show: {
+	    	                effect: "fade",
+	    	                duration: 400
+	    	            },
+	    	            hide: {
+	    	                effect: "fade",
+	    	                duration: 400
+	    	            },
+	    	            modal: true,
+	    	            width: 500
+	    	        });
+
+	    	        $('#after-hours').click(function() {
+	    	            $("#dialog").dialog("open");
+	    	        });
+
+	    	        $("input[type=submit], button, #after-hours, #aside-menu a").button();
+	    	        
+	    	        $("#after-hours").click(function (event) {
+                          event.preventDefault();
+                    });
+
+	    	    });
+
+	    	})(jQuery);
+    	</script>
+    </body>
+</html>

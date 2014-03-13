@@ -1,0 +1,11 @@
+﻿@model IEnumerable<UnitedReporting.UI.Areas.Admin.Controllers.ImageViewModel>
+
+<hr />
+@foreach (var image in Model)
+{
+    <div style="margin:20px;">
+        <div style="width: 600px;"><img src="@image.Url" alt="" style="width: 50%; height: 50%; box-shadow: 0 5px 8px #333; line-height:0;" /></div>
+        <p><a href="javascript:void(0)" class="image-delete" data-url="@image.Url">Delete Image</a></p>
+        <hr />
+    </div>
+}

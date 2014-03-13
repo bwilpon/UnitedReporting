@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7756BAEE-866C-4496-9E4D-31F40FEC6353}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UnitedReporting.Model</RootNamespace>
+    <AssemblyName>UnitedReporting.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Category.cs">
+      <DependentUpon>UnitedReporting.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.cs">
+      <DependentUpon>UnitedReporting.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ELMAH_Error.cs">
+      <DependentUpon>ErrorHandling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities.cs" />
+    <Compile Include="ErrorHandling.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorHandling.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorHandling.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorHandling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorHandling.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorHandling.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Metadata\ContactMetadata.cs" />
+    <Compile Include="PageContent.cs">
+      <DependentUpon>UnitedReporting.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TranscriptOrder.cs">
+      <DependentUpon>UnitedReporting.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnitedReporting.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitedReporting.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnitedReporting.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitedReporting.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnitedReporting.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitedReporting.edmx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="UnitedReporting.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>UnitedReporting.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.config" />
+    <EntityDeploy Include="ErrorHandling.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ErrorHandling.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ErrorHandling.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ErrorHandling.edmx</DependentUpon>
+      <LastGenOutput>ErrorHandling.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ErrorHandling.edmx.diagram">
+      <DependentUpon>ErrorHandling.edmx</DependentUpon>
+    </None>
+    <None Include="ErrorHandling.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ErrorHandling.edmx</DependentUpon>
+      <LastGenOutput>ErrorHandling.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="UnitedReporting.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UnitedReporting.Context.cs</LastGenOutput>
+      <DependentUpon>UnitedReporting.edmx</DependentUpon>
+    </None>
+    <None Include="UnitedReporting.edmx.diagram">
+      <DependentUpon>UnitedReporting.edmx</DependentUpon>
+    </None>
+    <None Include="UnitedReporting.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UnitedReporting.cs</LastGenOutput>
+      <DependentUpon>UnitedReporting.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="UnitedReporting.edmx.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

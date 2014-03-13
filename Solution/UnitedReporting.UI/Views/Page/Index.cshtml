@@ -1,0 +1,23 @@
+﻿@model UnitedReporting.Model.PageContent
+@{
+    var headerDisplay = string.IsNullOrWhiteSpace(Model.SubTitle) ? Model.Name : Model.Name + ".";
+    
+}
+
+@if (Model.DisplayImage)
+{
+	<section class="featured">
+		<img src="@Model.ImageUrl" />
+	</section>
+}
+
+<article>
+	<hgroup class="title">
+		<h1>@headerDisplay</h1>
+		@if (!string.IsNullOrWhiteSpace(Model.SubTitle))
+        {
+            <h2>@Model.SubTitle.</h2>
+        }
+	</hgroup>
+	@Html.Raw(Model.Body)
+</article>

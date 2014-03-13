@@ -1,0 +1,34 @@
+﻿@model IList<UnitedReporting.Model.Category>
+
+<div id="nav">
+	<nav>
+		<ul class="sf-menu" id="menu">
+			@foreach (var category in Model)
+			{
+				<li>
+				    @if (category.PageContents != null && category.PageContents.Count == 1)
+					{
+						@Html.RouteLink(category.Name, "Page", new {friendlyUrl = category.PageContents.First().FriendlyUrl})
+                    }
+                    else
+                    {
+                        <a href="javascript:void(0)">@category.Name</a>
+                    }
+					@if (category.PageContents != null && category.PageContents.Count > 1)
+					{
+						<ul>
+							@foreach (var page in category.PageContents)
+							{
+                                if (page.Active) {
+								    <li>
+									    @Html.RouteLink(page.Name, "Page", new {friendlyUrl = page.FriendlyUrl})
+								    </li>
+                                }
+							}
+						</ul>
+					}
+				</li>
+			}
+		</ul>
+	</nav>
+</div>

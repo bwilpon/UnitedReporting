@@ -1,0 +1,134 @@
+@model UnitedReporting.Model.PageContent
+
+@{
+    var pageName = Model == null ? "Create Page" : Model.Name;
+    ViewBag.Title = pageName;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>@pageName</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Id)
+    
+    <fieldset>
+        <legend>Page</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Active)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SubTitle)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SubTitle)
+            @Html.ValidationMessageFor(model => model.SubTitle)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DisplayImage)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DisplayImage)
+            @Html.ValidationMessageFor(model => model.DisplayImage)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ImageUrl)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ImageUrl)
+            <input type="button" value="Browse" id="browse" />
+            @Html.ValidationMessageFor(model => model.ImageUrl)
+        </div>
+
+        @if(Model != null && !string.IsNullOrWhiteSpace(Model.ImageUrl)) {
+            <section class="featured">
+                <img src="@Model.ImageUrl" />
+            </section>
+        }
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Body)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Body)
+            @Html.ValidationMessageFor(model => model.Body)
+        </div>
+        
+        
+
+        
+        
+        <div class="editor-label">
+            <label for="CategoryId">Category</label>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CategoryId", string.Empty)
+            @Html.ValidationMessageFor(model => model.CategoryId)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FriendlyUrl)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FriendlyUrl)
+            @Html.ValidationMessageFor(model => model.FriendlyUrl)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        var imagePage = "/admin/imagemanager/ImageModal";
+
+        var $dialog = $('<div></div>')
+               .html('<iframe style="border: 0px; " src="' + imagePage + '" width="100%" height="100%"></iframe>')
+               .dialog({
+                   autoOpen: false,
+                   modal: true,
+                   height: 625,
+                   width: 500,
+                   title: "Some title"
+               });
+
+
+        $(document).bind('imageSelected', function (evt) {
+            console.log(evt);
+            $("#ImageUrl").val(evt.url);
+            $dialog.dialog('close');
+        });
+
+
+        $("#browse").on("click", function () {
+            $dialog.dialog('open');
+        });
+
+    </script>
+
+}

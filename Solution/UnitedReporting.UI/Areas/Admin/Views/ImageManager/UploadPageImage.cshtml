@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Image Upload";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Areas/Admin/Content/uploadify.css" rel="stylesheet" />
+
+<h2>Image Upload</h2>
+<p>Image files should be saved in <strong >jpg</strong> or <strong >png</strong> format and have a width of <strong >960px</strong>.</p>
+@using (@Html.BeginForm("UploadPageImage", "ImageManager", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    <div id="queue"></div>
+    <input id="file_upload" name="file_upload" type="file" multiple="true">   
+}
+
+@section scripts    
+{
+    <script src="~/Areas/Admin/Scripts/jquery.uploadify.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#file_upload").uploadify({
+                height: 30,
+                swf: '/Areas/Admin/Content/uploadify.swf',
+                uploader: '/Admin/ImageManager/UploadPageImage',
+                width: 120
+            });
+        });
+    </script>
+}

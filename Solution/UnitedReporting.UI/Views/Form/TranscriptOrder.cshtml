@@ -1,0 +1,104 @@
+﻿@model UnitedReporting.Model.TranscriptOrder
+
+@{
+    ViewBag.Title = "TranscriptOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<article>
+    <h1>Order Transcripts</h1>
+    <p>Please fill out the form below to order transcripts.</p>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.Id)
+
+        <label>Ordering Attorney</label>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OrderingAttorney)
+            @Html.ValidationMessageFor(model => model.OrderingAttorney)
+        </div>
+
+        <label>Firm Name</label>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirmName)
+            @Html.ValidationMessageFor(model => model.FirmName)
+        </div>
+
+        <label>Address 1</label>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address1)
+            @Html.ValidationMessageFor(model => model.Address1)
+        </div>
+
+        <label>Address 2</label>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address2)
+            @Html.ValidationMessageFor(model => model.Address2)
+        </div>
+
+        <label>City</label>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.City)
+            @Html.ValidationMessageFor(model => model.City)
+        </div>
+
+        <label>State</label>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.State)
+            @Html.ValidationMessageFor(model => model.State)
+        </div>
+
+        <label>Email</label>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <label>Phone</label>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Phone)
+            @Html.ValidationMessageFor(model => model.Phone)
+        </div>
+
+        <label>Case Style</label>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CaseStyle)
+            @Html.ValidationMessageFor(model => model.CaseStyle)
+        </div>
+
+        <label>Date(s) Taken</label>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DateTaken)
+            @Html.ValidationMessageFor(model => model.DateTaken)
+        </div>
+
+        <label>Deponent(s) or Judge</label>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DeponentsOrJudge)
+            @Html.ValidationMessageFor(model => model.DeponentsOrJudge)
+        </div>
+
+        <label>Date Needed</label>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DateNeeded)
+            @Html.ValidationMessageFor(model => model.DateNeeded)
+        </div>
+
+        <label>If ordering only an excerpt, which part?</label>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Excerpt)
+            @Html.ValidationMessageFor(model => model.Excerpt)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    }
+</article>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
