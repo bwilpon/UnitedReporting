@@ -28,5 +28,6 @@ namespace UnitedReporting.Model
         public string DeponentsOrJudge { get; set; }
         public string DateNeeded { get; set; }
         public string Excerpt { get; set; }
+        public System.DateTime CreatedOn { get; set; }
     }
 }

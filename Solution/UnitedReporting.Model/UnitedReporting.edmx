@@ -5,93 +5,119 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       
-    <Schema Namespace="UnitedReporting.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="UnitedReportingStoreContainer">
-    <EntitySet Name="Categories" EntityType="UnitedReporting.Store.Categories" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="PageContents" EntityType="UnitedReporting.Store.PageContents" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Contacts" EntityType="UnitedReporting.Store.Contacts" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TranscriptOrders" EntityType="UnitedReporting.Store.TranscriptOrders" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="PageContentCategory" Association="UnitedReporting.Store.PageContentCategory">
-      <End Role="PageContent" EntitySet="PageContents" />
-      <End Role="Category" EntitySet="Categories" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Categories">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="ImageUrl" Type="nvarchar" Nullable="true" MaxLength="500" />
-    <Property Name="Sequence" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="PageContents">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="SubTitle" Type="nvarchar" Nullable="true" MaxLength="100" />
-    <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ImageUrl" Type="nvarchar" Nullable="true" MaxLength="500" />
-    <Property Name="DisplayImage" Type="bit" Nullable="false" />
-    <Property Name="Active" Type="bit" Nullable="false" />
-    <Property Name="PublishedDate" Type="datetime" Nullable="true" />
-    <Property Name="FriendlyUrl" Type="nvarchar" Nullable="true" MaxLength="100" />
-    <Property Name="CategoryId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Contacts">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="100" />
-    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="100" />
-    <Property Name="Phone" Type="varchar" Nullable="false" MaxLength="100" />
-    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="100" />
-    <Property Name="CreatedOn" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
-    <Property Name="Message" Type="varchar(max)" Nullable="true" />
-    <Property Name="AttorneyFirstName" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="AttorneyLastName" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="FirmName" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="CaseNumber" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="CaseName" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="PreceedingDate" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="RequestedServices" Type="varchar" Nullable="true" MaxLength="255" />
-    <Property Name="NoticeFilePath" Type="varchar" Nullable="true" MaxLength="255" />
-  </EntityType>
-  <EntityType Name="TranscriptOrders">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="OrderingAttorney" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="FirmName" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="Address1" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="Address2" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="State" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="Phone" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="CaseStyle" Type="nvarchar" Nullable="false" MaxLength="255" />
-    <Property Name="DateTaken" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="DeponentsOrJudge" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="DateNeeded" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="Excerpt" Type="nvarchar" Nullable="false" MaxLength="255" />
-  </EntityType>
-  <Association Name="PageContentCategory">
-    <End Role="PageContent" Type="UnitedReporting.Store.PageContents" Multiplicity="*" />
-    <End Role="Category" Type="UnitedReporting.Store.Categories" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Category">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="PageContent">
-        <PropertyRef Name="CategoryId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="UnitedReporting.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="500" />
+          <Property Name="Sequence" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'UnitedReporting.dbo.Contacts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="Id" />
+            
+            
+            
+            
+            
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="AttorneyFirstName" Type="varchar" MaxLength="100" />
+          <Property Name="AttorneyLastName" Type="varchar" MaxLength="100" />
+          <Property Name="FirmName" Type="varchar" MaxLength="100" />
+          <Property Name="Phone" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CaseNumber" Type="varchar" MaxLength="50" />
+          <Property Name="CaseName" Type="varchar" MaxLength="100" />
+          <Property Name="PreceedingDate" Type="varchar" MaxLength="100" />
+          <Property Name="RequestedServices" Type="varchar" MaxLength="255" />
+          <Property Name="NoticeFilePath" Type="varchar" MaxLength="255" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Message" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="PageContents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SubTitle" Type="nvarchar" MaxLength="100" />
+          <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="500" />
+          <Property Name="DisplayImage" Type="bit" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="PublishedDate" Type="datetime" />
+          <Property Name="FriendlyUrl" Type="nvarchar" MaxLength="100" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TranscriptOrders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderingAttorney" Type="nvarchar" MaxLength="100" />
+          <Property Name="FirmName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+          <Property Name="CaseStyle" Type="nvarchar" MaxLength="255" />
+          <Property Name="DateTaken" Type="nvarchar" MaxLength="100" />
+          <Property Name="DeponentsOrJudge" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateNeeded" Type="nvarchar" MaxLength="100" />
+          <Property Name="Excerpt" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <Association Name="FK_PageContentCategory">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="PageContents" Type="Self.PageContents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PageContents">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UnitedReportingStoreContainer">
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PageContents" EntityType="Self.PageContents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TranscriptOrders" EntityType="Self.TranscriptOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contacts" EntityType="Self.Contacts" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Contacts].[Id] AS [Id], 
+    [Contacts].[FirstName] AS [FirstName], 
+    [Contacts].[LastName] AS [LastName], 
+    [Contacts].[AttorneyFirstName] AS [AttorneyFirstName], 
+    [Contacts].[AttorneyLastName] AS [AttorneyLastName], 
+    [Contacts].[FirmName] AS [FirmName], 
+    [Contacts].[Phone] AS [Phone], 
+    [Contacts].[Email] AS [Email], 
+    [Contacts].[CaseNumber] AS [CaseNumber], 
+    [Contacts].[CaseName] AS [CaseName], 
+    [Contacts].[PreceedingDate] AS [PreceedingDate], 
+    [Contacts].[RequestedServices] AS [RequestedServices], 
+    [Contacts].[NoticeFilePath] AS [NoticeFilePath], 
+    [Contacts].[CreatedOn] AS [CreatedOn], 
+    [Contacts].[Message] AS [Message]
+    FROM [dbo].[Contacts] AS [Contacts]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_PageContentCategory" Association="Self.FK_PageContentCategory">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="PageContents" EntitySet="PageContents" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="UnitedReporting" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
@@ -168,19 +194,20 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OrderingAttorney" Type="String" Nullable="false" MaxLength="100" />
-          <Property Name="FirmName" Type="String" Nullable="false" MaxLength="100" />
-          <Property Name="Address1" Type="String" Nullable="false" MaxLength="100" />
-          <Property Name="Address2" Type="String" Nullable="false" MaxLength="100" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="100" />
-          <Property Name="State" Type="String" Nullable="false" MaxLength="50" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" />
-          <Property Name="Phone" Type="String" Nullable="false" MaxLength="100" />
-          <Property Name="CaseStyle" Type="String" Nullable="false" MaxLength="255" />
-          <Property Name="DateTaken" Type="String" Nullable="false" MaxLength="100" />
-          <Property Name="DeponentsOrJudge" Type="String" Nullable="false" MaxLength="100" />
-          <Property Name="DateNeeded" Type="String" Nullable="false" MaxLength="100" />
-          <Property Name="Excerpt" Type="String" Nullable="false" MaxLength="255" />
+          <Property Name="OrderingAttorney" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FirmName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CaseStyle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DateTaken" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DeponentsOrJudge" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateNeeded" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Excerpt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -236,26 +263,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TranscriptOrders">
-      <EntityTypeMapping TypeName="IsTypeOf(UnitedReporting.TranscriptOrder)">
-        <MappingFragment StoreEntitySet="TranscriptOrders">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="OrderingAttorney" ColumnName="OrderingAttorney" />
-          <ScalarProperty Name="FirmName" ColumnName="FirmName" />
-          <ScalarProperty Name="Address1" ColumnName="Address1" />
-          <ScalarProperty Name="Address2" ColumnName="Address2" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="State" ColumnName="State" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="CaseStyle" ColumnName="CaseStyle" />
-          <ScalarProperty Name="DateTaken" ColumnName="DateTaken" />
-          <ScalarProperty Name="DeponentsOrJudge" ColumnName="DeponentsOrJudge" />
-          <ScalarProperty Name="DateNeeded" ColumnName="DateNeeded" />
-          <ScalarProperty Name="Excerpt" ColumnName="Excerpt" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+          <EntitySetMapping Name="TranscriptOrders">
+            <EntityTypeMapping TypeName="UnitedReporting.TranscriptOrder">
+              <MappingFragment StoreEntitySet="TranscriptOrders">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Excerpt" ColumnName="Excerpt" />
+                <ScalarProperty Name="DateNeeded" ColumnName="DateNeeded" />
+                <ScalarProperty Name="DeponentsOrJudge" ColumnName="DeponentsOrJudge" />
+                <ScalarProperty Name="DateTaken" ColumnName="DateTaken" />
+                <ScalarProperty Name="CaseStyle" ColumnName="CaseStyle" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="OrderingAttorney" ColumnName="OrderingAttorney" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

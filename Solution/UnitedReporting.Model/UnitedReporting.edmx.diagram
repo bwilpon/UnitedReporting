@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="UnitedReporting.PageContent" Width="1.5" PointX="3.125" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="UnitedReporting.PageContentCategory" />
         <EntityTypeShape EntityType="UnitedReporting.Contact" Width="2.5" PointX="6.75" PointY="0.875" />
-        <EntityTypeShape EntityType="UnitedReporting.TranscriptOrder" Width="1.5" PointX="9.75" PointY="0.875" />
+        <EntityTypeShape EntityType="UnitedReporting.TranscriptOrder" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

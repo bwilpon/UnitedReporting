@@ -202,6 +202,7 @@
     <Compile Include="Areas\Admin\Controllers\ImageManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\PageManagerController.cs" />
     <Compile Include="Areas\Admin\Models\AccountModels.cs" />
+    <Compile Include="Areas\Admin\Models\DashboardViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PageManagerModels.cs" />
     <Compile Include="Controllers\FormController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
@@ -303,7 +304,7 @@
     <Content Include="Areas\Admin\Views\ImageManager\ImageModal.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_AdminModal.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Dashboard\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\ScheduleServiceDetails.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-1.8.2-vsdoc.js" />
     <Content Include="Images\ethics-first.gif" />
