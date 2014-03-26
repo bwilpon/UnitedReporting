@@ -34,5 +34,11 @@ namespace UnitedReporting.UI.Areas.Admin.Controllers
             return View(contact);
         }
 
+        public ActionResult TranscriptOrderDetails(int id)
+        {
+            var order = _transcriptOrderRepository.GetSingle(o => o.Id == id);
+            return View(order);
+        }
+
     }
 }

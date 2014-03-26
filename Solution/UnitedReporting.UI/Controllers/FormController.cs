@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Linq;
+using System.Web.Mvc;
 using UnitedReporting.DataAccess;
 using UnitedReporting.Model;
 
@@ -15,11 +17,13 @@ namespace UnitedReporting.UI.Controllers
         // POST: /Contact/Create
 
         [HttpPost]
-        public ActionResult ScheduleService(Contact contact)
+        public ActionResult ScheduleService(Contact contact, FormCollection collection)
         {
             try
             {
                 IGenericDataRepository<Contact> contactRepository = new GenericDataRepository<Contact>();
+                var services = collection["RequestedServices"].Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
+                contact.RequestedServices = string.Join(", ", services);
                 contactRepository.Add(contact);
                 //TODO: Send email
                 //TODO: Redirect to thank you page

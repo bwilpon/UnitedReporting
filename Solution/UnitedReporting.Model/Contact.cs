@@ -17,17 +17,17 @@ namespace UnitedReporting.Model
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
-        public System.DateTime CreatedOn { get; set; }
-        public string Message { get; set; }
         public string AttorneyFirstName { get; set; }
         public string AttorneyLastName { get; set; }
         public string FirmName { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
         public string CaseNumber { get; set; }
         public string CaseName { get; set; }
         public string PreceedingDate { get; set; }
         public string RequestedServices { get; set; }
         public string NoticeFilePath { get; set; }
+        public System.DateTime CreatedOn { get; set; }
+        public string Message { get; set; }
     }
 }

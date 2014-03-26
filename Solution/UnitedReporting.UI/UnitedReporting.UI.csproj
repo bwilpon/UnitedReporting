@@ -305,6 +305,7 @@
     <Content Include="Areas\Admin\Views\Shared\_AdminModal.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\ScheduleServiceDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\TranscriptOrderDetails.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-1.8.2-vsdoc.js" />
     <Content Include="Images\ethics-first.gif" />

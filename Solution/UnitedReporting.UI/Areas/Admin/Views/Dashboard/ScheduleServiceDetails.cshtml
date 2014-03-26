@@ -1,99 +1,78 @@
 ﻿@model UnitedReporting.Model.Contact
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "ScheduleServiceDetails";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>ScheduleServiceDetails</h2>
 
 <fieldset>
-    <legend>Contact</legend>
+    <legend>Client</legend>
+    
+    <p>
+        <label>Client's Name</label>
+        @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)
+    </p>
 
-    <div class="display-label">
-         @Html.LabelFor(model => model.FirstName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FirstName)
-    </div>
-
-    <div class="display-label">
-         @Html.LabelFor(model => model.LastName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.LastName)
-    </div>
-
-    <div class="display-label">
-         @Html.LabelFor(model => model.Company)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Company)
-    </div>
-
-    <div class="display-label">
-         @Html.LabelFor(model => model.Phone)
-    </div>
-    <div class="display-field">
+    <p>
+        <label>Attorney's Name</label>
+        @Html.DisplayFor(model => model.AttorneyFirstName) @Html.DisplayFor(model => model.AttorneyLastName)
+    </p>
+    
+    <p>
+        <label>Firm Name</label>
+        @Html.DisplayFor(model => model.FirmName)
+    </p>
+    <p>
+        <label>Phone</label>
         @Html.DisplayFor(model => model.Phone)
-    </div>
-
-    <div class="display-label">
-         @Html.LabelFor(model => model.Email)
-    </div>
-    <div class="display-field">
+    </p>
+    
+    <p>
+        <label>Email</label>
         @Html.DisplayFor(model => model.Email)
-    </div>
-
-    <div class="display-label">
-         @Html.LabelFor(model => model.Address1)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Address1)
-    </div>
-
-    <div class="display-label">
-         @Html.LabelFor(model => model.Address2)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Address2)
-    </div>
-
-    <div class="display-label">
-         @Html.LabelFor(model => model.City)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.City)
-    </div>
-
-    <div class="display-label">
-         @Html.LabelFor(model => model.State)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.State)
-    </div>
-
-    <div class="display-label">
-         @Html.LabelFor(model => model.Zip)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Zip)
-    </div>
-
-    <div class="display-label">
-        @Html.LabelFor(model => model.Message)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Message)
-    </div>
-
-    <div class="display-label">
-         @Html.LabelFor(model => model.CreatedOn)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CreatedOn)
-    </div>
+    </p>
 </fieldset>
+<fieldset>
+    <legend>Deposition</legend>
+
+    <p>
+        <label>Case Number</label>
+        @Html.DisplayFor(model => model.CaseNumber)
+    </p>
+    
+    <p>
+        <label>Case Name</label>
+        @Html.DisplayFor(model => model.CaseName)
+    </p>
+
+    <p>
+        <label>Proceeding Date</label>
+        @Html.DisplayFor(model => model.PreceedingDate)
+    </p>
+    
+    <p>
+        <label>Requested Service</label>
+        @Html.DisplayFor(model => model.RequestedServices)
+    </p>
+    
+    @Html.DisplayFor(model => model.NoticeFilePath)
+
+    @if (!string.IsNullOrWhiteSpace(Model.Message))
+    {
+        <p>
+            <label>Notes</label>
+            @Html.DisplayFor(model => model.Message)
+        </p>
+    }
+    
+    <p>
+        <label>Created On</label>
+        @Model.CreatedOn.AddHours(3)
+    </p>
+</fieldset>
+
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>

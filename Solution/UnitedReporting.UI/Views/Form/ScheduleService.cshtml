@@ -1,7 +1,7 @@
 ﻿@model UnitedReporting.Model.Contact
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Schedule Service";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <article>
@@ -118,17 +118,17 @@
                     <label>Requested Service</label>
                 </div>
                 <div class="editor-field">
-                    <input type="checkbox" name="RequestedServices" id="CourtReport" value="Court Report" /> <label for="CourtReport" style="display: inline-block">Court Report</label><br/>
-                    <input type="checkbox" name="RequestedServices" id="Transcription" value="Transcription" /> <label for="Transcription" style="display: inline-block">Transcription</label><br />
-                    <input type="checkbox" name="RequestedServices" id="Interpreter" value="Interpreter" /> <label for="Interpreter" style="display: inline-block">Interpreter</label><br />
-                    <input type="checkbox" name="RequestedServices" value="Videographer" /> <label for="" style="display: inline-block">Videographer</label><br />
-                    <input type="checkbox" name="RequestedServices" value="Mediation" /> <label for="" style="display: inline-block">Mediation</label><br />
-                    <input type="checkbox" name="RequestedServices" value="Videoconferencing" /> <label for="" style="display: inline-block">Videoconferencing</label><br />
-                    <input type="checkbox" name="RequestedServices" value="Trial Presentation" /> <label for="" style="display: inline-block">Trial Presentation</label><br />
-                    <input type="checkbox" name="RequestedServices" value="Equipment Rental" /> <label for="" style="display: inline-block">Equipment Rental</label><br />
-                    <input type="checkbox" name="RequestedServices" value="Court Report" /> <label for="" style="display: inline-block">Court Report</label><br />
-                    <input type="checkbox" name="RequestedServices" value="Other" /> <label for="" style="display: inline-block">Other: </label>
-                    <input type="text" id="Other" />
+                    <input type="checkbox" id="RequestedServices" name="RequestedServices" value="Court Report" /> <label for="CourtReport" style="display: inline-block">Court Report</label><br />
+                    <input type="checkbox" id="RequestedServices" name="RequestedServices" value="Transcription" /> <label for="Transcription" style="display: inline-block">Transcription</label><br />
+                    <input type="checkbox" id="RequestedServices" name="RequestedServices" value="Interpreter" /> <label for="Interpreter" style="display: inline-block">Interpreter</label><br />
+                    <input type="checkbox" id="RequestedServices" name="RequestedServices" value="Videographer" /> <label for="" style="display: inline-block">Videographer</label><br />
+                    <input type="checkbox" id="RequestedServices" name="RequestedServices" value="Mediation" /> <label for="" style="display: inline-block">Mediation</label><br />
+                    <input type="checkbox" id="RequestedServices" name="RequestedServices" value="Videoconferencing" /> <label for="" style="display: inline-block">Videoconferencing</label><br />
+                    <input type="checkbox" id="RequestedServices" name="RequestedServices" value="Trial Presentation" /> <label for="" style="display: inline-block">Trial Presentation</label><br />
+                    <input type="checkbox" id="RequestedServices" name="RequestedServices" value="Equipment Rental" /> <label for="" style="display: inline-block">Equipment Rental</label><br />
+                    <input type="checkbox" id="RequestedServices" name="RequestedServices" value="Court Report" /> <label for="" style="display: inline-block">Court Report</label><br />
+                    <input type="checkbox" value="Other" /> <label for="" style="display: inline-block">Other: </label>
+                    <input type="text" id="RequestedServices" name="RequestedServices" />
                 </div>
             </div>
         </fieldset>

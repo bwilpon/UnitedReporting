@@ -50,7 +50,7 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CreatedOn)
+                @item.CreatedOn.AddHours(3)
             </td>
             <td>
                 @Html.ActionLink("Details", "ScheduleServiceDetails", new { id=item.Id })
@@ -78,8 +78,10 @@
             <td>@order.DateNeeded</td>
             <td>@order.Phone</td>
             <td>@order.Email</td>
-            <td>@order.CreatedOn.AddHours(3) @order.CreatedOn.ToLocalTime()</td>
-            <td>Details</td>
+            <td>@order.CreatedOn.AddHours(3)</td>
+            <td>
+                @Html.ActionLink("Details", "TranscriptOrderDetails", new { id = order.Id })
+            </td>
         </tr>
     }
 

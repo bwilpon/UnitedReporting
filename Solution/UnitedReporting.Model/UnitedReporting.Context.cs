@@ -28,7 +28,7 @@ namespace UnitedReporting.Model
     
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<PageContent> PageContents { get; set; }
-        public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<TranscriptOrder> TranscriptOrders { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
     }
 }
